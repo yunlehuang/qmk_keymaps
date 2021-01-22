@@ -1,0 +1,19 @@
+#pragma once
+
+
+// config settings
+#define EE_HANDS
+#define TAPPING_TERM 175
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
+#define PERMISSIVE_HOLD
+
+#define MOUSEKEY_DELAY              0
+#define MOUSEKEY_INTERVAL           2
+#define MOUSEKEY_MAX_SPEED          3
+#define MOUSEKEY_TIME_TO_MAX        60
+
+#define MOUSEKEY_WHEEL_DELAY        0
+#define MOUSEKEY_WHEEL_INTERVAL     250
+#define MOUSEKEY_WHEEL_MAX_SPEED    10
+#define MOUSEKEY_WHEEL_TIME_TO_MAX  100
