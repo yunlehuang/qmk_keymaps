@@ -33,3 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_INTERVAL     250
 #define MOUSEKEY_WHEEL_MAX_SPEED    10
 #define MOUSEKEY_WHEEL_TIME_TO_MAX  100
+
+#define COMBO_COUNT 3
+#define COMBO_TERM 45
