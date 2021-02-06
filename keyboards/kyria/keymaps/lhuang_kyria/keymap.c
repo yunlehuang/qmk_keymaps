@@ -37,13 +37,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_WIN] = LAYOUT(
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+     KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
+     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,  KC_DEL,          VSC_PRE, VSC_NEX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-                                KC_ESC,  KC_LCTL, MO(_SYM),OSM_SFT, KC_ENT,          KC_ENT,  KC_SPC,  MO(_NAV),KC_ESC,  KC_MUTE
+                                KC_ESC,  KC_LCTL, MO(_SYM),OSM_SFT, KC_ENT,          KC_BSPC, KC_SPC,  MO(_NAV),KC_ESC,  KC_MUTE
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
     ),
 
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LCTL, _______, _______, _______, _______, _______,                                             _______, _______, _______, _______, _______, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     _______, _______, _______, _______, _______, _______,                                             _______, _______, _______, _______, _______, _______,
+     KC_LGUI, _______, _______, _______, _______, _______,                                             _______, _______, _______, _______, _______, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      _______, _______, _______, _______, _______, _______, _______, _______,         _______, _______, _______, _______, _______, _______, _______, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                                             KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_WH_U, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     _______, KC_TAB,  XXXXXXX, PREV,    NEXT,    XXXXXXX,                                             KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_D, _______,
+     _______, XXXXXXX, XXXXXXX, PREV,    NEXT,    XXXXXXX,                                             KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_D, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,         _______, XXXXXXX, XXXXXXX, CTR_LEF, XXXXXXX, CTR_RIG, XXXXXXX, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -135,19 +135,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 enum combos { 
   Q_W_TAB,
   SPC_J_ENT,
-  P_BSPC_DEL,
-  
 };
 
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM spc_j_ent_combo[] = { KC_SPC, KC_J, COMBO_END};
-const uint16_t PROGMEM p_bspc_del_combo[] = { KC_P, KC_BSPC, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
   [SPC_J_ENT] = COMBO(spc_j_ent_combo, KC_ENT),
-  [P_BSPC_DEL] = COMBO(p_bspc_del_combo, KC_DEL),
-  
 };
 
 #ifdef OLED_DRIVER_ENABLE
@@ -222,7 +217,7 @@ void oled_task_user(void) {
 void encoder_update_user(uint8_t index, bool clockwise) {
 // left encoder
     if (index == 0) {
-        switch(biton32(layer_state)){
+        switch(get_highest_layer(layer_state)){
             case 3:
                 if (clockwise) {
                     register_code(KC_LCTL);
@@ -247,7 +242,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
 // right encoder
     else if (index == 1) {
-        switch(biton32(layer_state)){
+        switch(get_highest_layer(layer_state)){
             case 2:
                 if (clockwise) {
                     tap_code(KC_DEL);
@@ -273,3 +268,16 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
 }
 #endif
+
+// layer state transition functionality
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case _GAM:
+        combo_disable();
+        break;
+    default:
+        combo_enable();
+        break;
+    }
+  return state;
+};
