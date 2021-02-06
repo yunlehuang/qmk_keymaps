@@ -35,12 +35,12 @@
 
 #define MOUSEKEY_DELAY              0
 #define MOUSEKEY_INTERVAL           2
-#define MOUSEKEY_MAX_SPEED          3
-#define MOUSEKEY_TIME_TO_MAX        60
+#define MOUSEKEY_MAX_SPEED          5
+#define MOUSEKEY_TIME_TO_MAX        120
 
 #define MOUSEKEY_WHEEL_DELAY        0
 #define MOUSEKEY_WHEEL_INTERVAL     250
-#define MOUSEKEY_WHEEL_MAX_SPEED    10
+#define MOUSEKEY_WHEEL_MAX_SPEED    30
 #define MOUSEKEY_WHEEL_TIME_TO_MAX  100
 
 #define COMBO_COUNT 2
