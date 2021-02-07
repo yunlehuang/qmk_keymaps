@@ -42,8 +42,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,  KC_BSPC,         VSC_PRE, VSC_NEX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
-//  |--------|--------|--------|--------|--------|--------|---ESC--|---DEL--|       |--------|--------|--------|--------|--------|--------|--------|--------|
-                                KC_ESC,  KC_LCTL, MO(_SYM),KC_LSFT, KC_ENT,          KC_BSPC, KC_SPC,  MO(_NAV),KC_ESC,  KC_MUTE
+//  |--------|--------|--------|--------|--------|--------|--------|---DEL--|       |--------|--------|--------|--------|--------|--------|--------|--------|
+                                KC_ESC,  KC_LCTL, MO(_SYM),OSM_SFT, KC_ENT,          KC_BSPC, KC_SPC,  MO(_NAV),KC_ESC,  KC_MUTE
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|---ENT--|--------|--------|--------|--------|--------|--------|
     ),
 // Commented keys are combos
@@ -137,21 +137,16 @@ enum combos {
   Q_W_TAB,
   SPC_J_ENT,
   ENT_BSPC_DEL,
-  LSFT_SPC_ESC,
-  
 };
 
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM spc_j_ent_combo[] = { KC_SPC, KC_J, COMBO_END};
 const uint16_t PROGMEM ent_bspc_del_combo[] = { KC_ENT, KC_BSPC, COMBO_END};
-const uint16_t PROGMEM lsft_spc_esc_combo[] = { KC_LSFT, KC_SPC, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
   [SPC_J_ENT] = COMBO(spc_j_ent_combo, KC_ENT),
   [ENT_BSPC_DEL] = COMBO(ent_bspc_del_combo, KC_DEL),
-  [LSFT_SPC_ESC] = COMBO(lsft_spc_esc_combo, KC_ESC),
-  
 };
 
 #ifdef OLED_DRIVER_ENABLE
