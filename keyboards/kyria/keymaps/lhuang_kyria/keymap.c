@@ -134,20 +134,97 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 enum combos { 
-  Q_W_TAB,
-  SPC_J_ENT,
-  ENT_BSPC_DEL,
+    Q_W_TAB,
+    SPC_J_ENT,
+    ENT_BSPC_DEL,
+    ZC_COMBO,
+    ZV_COMBO,
+    ZX_COMBO,
+    QE_COMBO,
+    WR_COMBO,
+    ZF_COMBO,
+    CV_COMBO,
+    VB_COMBO
 };
 
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM spc_j_ent_combo[] = { KC_SPC, KC_J, COMBO_END};
 const uint16_t PROGMEM ent_bspc_del_combo[] = { KC_ENT, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM copy_combo[] = { KC_Z, KC_C, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = { KC_Z, KC_V, COMBO_END};
+const uint16_t PROGMEM cut_combo[] = { KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM undo_combo[] = { KC_Q, KC_E, COMBO_END};
+const uint16_t PROGMEM redo_combo[] = { KC_W, KC_R, COMBO_END};
+const uint16_t PROGMEM find_combo[] = { KC_Z, KC_F, COMBO_END};
+const uint16_t PROGMEM comment_combo[] = { KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM uncomment_combo[] = { KC_V, KC_B, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-  [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
-  [SPC_J_ENT] = COMBO(spc_j_ent_combo, KC_ENT),
-  [ENT_BSPC_DEL] = COMBO(ent_bspc_del_combo, KC_DEL),
+    //basic combos
+    [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
+    [SPC_J_ENT] = COMBO(spc_j_ent_combo, KC_ENT),
+    [ENT_BSPC_DEL] = COMBO(ent_bspc_del_combo, KC_DEL),
+    //action combos
+    [ZC_COMBO] = COMBO_ACTION(copy_combo),
+    [ZV_COMBO] = COMBO_ACTION(paste_combo),
+    [ZX_COMBO] = COMBO_ACTION(cut_combo),
+    [QE_COMBO] = COMBO_ACTION(undo_combo),
+    [WR_COMBO] = COMBO_ACTION(redo_combo),
+    [ZF_COMBO] = COMBO_ACTION(find_combo),
+    [CV_COMBO] = COMBO_ACTION(comment_combo),
+    [VB_COMBO] = COMBO_ACTION(uncomment_combo)
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case ZC_COMBO:
+        if (pressed) {
+        tap_code16(LCTL(KC_C));
+        }
+        break;
+    case ZV_COMBO:
+        if (pressed) {
+        tap_code16(LCTL(KC_V));
+        }
+        break;
+    case ZX_COMBO:
+        if (pressed) {
+        tap_code16(LCTL(KC_X));
+        }
+        break;
+    case QE_COMBO:
+        if (pressed) {
+        tap_code16(LCTL(KC_Z));
+        }
+        break;
+    case WR_COMBO:
+        if (pressed) {
+        tap_code16(LCTL(KC_Y));
+        }
+        break;
+    case ZF_COMBO:
+        if (pressed) {
+        tap_code16(LCTL(KC_F));
+        }
+        break;
+    case CV_COMBO:
+        if (pressed) {
+        register_code(KC_LCTL);
+        tap_code(KC_K);
+        tap_code(KC_C);
+        unregister_code(KC_LCTL);
+        }
+        break;
+    case VB_COMBO:
+        if (pressed) {
+        register_code(KC_LCTL);
+        tap_code(KC_K);
+        tap_code(KC_U);
+        unregister_code(KC_LCTL);
+        }
+        break;
+  }
+}
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
