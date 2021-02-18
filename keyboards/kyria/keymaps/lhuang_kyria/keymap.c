@@ -15,6 +15,16 @@
  */
 #include QMK_KEYBOARD_H
 
+#define _WIN 0
+#define _MAC 1
+#define _SYM 2
+#define _NAV 3
+#define _NUM 4
+#define _NUM2 5
+#define _GAM 6
+#define _MOU 7
+#define _MUS 8
+
 #define NUM_SCN LT(_NUM, KC_SCLN)
 #define OSM_SFT OSM(MOD_LSFT)
 #define CTR_LEF C(KC_LEFT)
@@ -23,15 +33,7 @@
 #define NEXT C(KC_TAB)
 #define VSC_PRE LCTL(KC_PGUP) //previous tab in VS code
 #define VSC_NEX LCTL(KC_PGDN) //next tab in VS code
-
-#define _WIN 0
-#define _MAC 1
-#define _SYM 2
-#define _NAV 3
-#define _NUM 4
-#define _GAM 5
-#define _MOU 6
-#define _MUS 7
+#define ALT_NUM MO(_NUM2)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -39,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  |--------|-------TAB-------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
+     ALT_NUM, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,  KC_BSPC,         VSC_PRE, VSC_NEX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
 //  |--------|--------|--------|--------|--------|--------|--------|---DEL--|       |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -52,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LCTL, _______, _______, _______, _______, _______,                                             _______, _______, _______, _______, _______, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_LGUI, _______, _______, _______, _______, _______,                                             _______, _______, _______, _______, _______, _______,
+     _______, _______, _______, _______, _______, _______,                                             _______, _______, _______, _______, _______, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      _______, _______, _______, _______, _______, _______, _______, _______,         _______, _______, _______, _______, _______, _______, _______, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -96,13 +98,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
     ),
 
+    [_NUM2] = LAYOUT(
+//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
+     _______, KC_1,    KC_2,    KC_3,    KC_0,    _______,                                             _______, _______, _______, _______, _______, _______,
+//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
+     XXXXXXX, KC_4,    KC_5,    KC_6,    _______, _______,                                             _______, _______, _______, _______, _______, _______,
+//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
+     _______, KC_7,    KC_8,    KC_9,    _______, _______, _______, _______,         _______, _______, _______, _______, _______, _______, _______, _______,
+//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
+                                _______, _______, _______, _______, _______,         _______, _______, _______, _______, _______
+//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
+    ),
+
     [_GAM] = LAYOUT(
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_3,    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_4,    KC_LALT, KC_A,    KC_S,    KC_D,    KC_F,                                                KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, _______,
+     KC_4,    KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,                                                KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, _______,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_5,    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_6,    KC_7,            _______, KC_DEL,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
+     KC_5,    KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_6,    KC_7,            _______, KC_DEL,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
                                 _______, KC_LCTL, KC_SPC,  KC_1,    KC_2,            _______, KC_SPC,  CMB_OFF, TO(_WIN),_______
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
@@ -137,12 +151,6 @@ enum combos {
     Q_W_TAB,
     SPC_J_ENT,
     ENT_BSPC_DEL,
-    ZC_COMBO,
-    ZV_COMBO,
-    ZX_COMBO,
-    QE_COMBO,
-    WR_COMBO,
-    ZF_COMBO,
     CV_COMBO,
     VB_COMBO
 };
@@ -150,12 +158,6 @@ enum combos {
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM spc_j_ent_combo[] = { KC_SPC, KC_J, COMBO_END};
 const uint16_t PROGMEM ent_bspc_del_combo[] = { KC_ENT, KC_BSPC, COMBO_END};
-const uint16_t PROGMEM copy_combo[] = { KC_Z, KC_C, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = { KC_Z, KC_V, COMBO_END};
-const uint16_t PROGMEM cut_combo[] = { KC_Z, KC_X, COMBO_END};
-const uint16_t PROGMEM undo_combo[] = { KC_Q, KC_E, COMBO_END};
-const uint16_t PROGMEM redo_combo[] = { KC_W, KC_R, COMBO_END};
-const uint16_t PROGMEM find_combo[] = { KC_Z, KC_F, COMBO_END};
 const uint16_t PROGMEM comment_combo[] = { KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM uncomment_combo[] = { KC_V, KC_B, COMBO_END};
 
@@ -165,48 +167,12 @@ combo_t key_combos[COMBO_COUNT] = {
     [SPC_J_ENT] = COMBO(spc_j_ent_combo, KC_ENT),
     [ENT_BSPC_DEL] = COMBO(ent_bspc_del_combo, KC_DEL),
     //action combos
-    [ZC_COMBO] = COMBO_ACTION(copy_combo),
-    [ZV_COMBO] = COMBO_ACTION(paste_combo),
-    [ZX_COMBO] = COMBO_ACTION(cut_combo),
-    [QE_COMBO] = COMBO_ACTION(undo_combo),
-    [WR_COMBO] = COMBO_ACTION(redo_combo),
-    [ZF_COMBO] = COMBO_ACTION(find_combo),
     [CV_COMBO] = COMBO_ACTION(comment_combo),
     [VB_COMBO] = COMBO_ACTION(uncomment_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
-    case ZC_COMBO:
-        if (pressed) {
-        tap_code16(LCTL(KC_C));
-        }
-        break;
-    case ZV_COMBO:
-        if (pressed) {
-        tap_code16(LCTL(KC_V));
-        }
-        break;
-    case ZX_COMBO:
-        if (pressed) {
-        tap_code16(LCTL(KC_X));
-        }
-        break;
-    case QE_COMBO:
-        if (pressed) {
-        tap_code16(LCTL(KC_Z));
-        }
-        break;
-    case WR_COMBO:
-        if (pressed) {
-        tap_code16(LCTL(KC_Y));
-        }
-        break;
-    case ZF_COMBO:
-        if (pressed) {
-        tap_code16(LCTL(KC_F));
-        }
-        break;
     case CV_COMBO:
         if (pressed) {
         register_code(KC_LCTL);
