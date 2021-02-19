@@ -265,7 +265,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 // left encoder
     if (index == 0) {
         switch(get_highest_layer(layer_state)){
-            case 3:
+            case _NAV:
                 if (clockwise) {
                     register_code(KC_LCTL);
                     tap_code(KC_TAB);
@@ -290,14 +290,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 // right encoder
     else if (index == 1) {
         switch(get_highest_layer(layer_state)){
-            case 2:
+            case _SYM:
                 if (clockwise) {
                     tap_code(KC_DEL);
                 } else {
                     tap_code(KC_BSPC);
                 }
                 break;
-            case 7:
+            case _MUS:
                 if (clockwise){
                     tap_code(KC_VOLU);
                 } else{
