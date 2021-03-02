@@ -39,14 +39,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_WIN] = LAYOUT(
 //  |--------|-------TAB-------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
-     KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
+     KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                                KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      ALT_NUM, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                                KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
 //  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
      KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_SPC,  KC_BSPC,         VSC_PRE, VSC_NEX, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
 //  |--------|--------|--------|--------|--------|--------|--------|---DEL--|       |--------|--------|--------|--------|--------|--------|--------|--------|
                                 KC_ESC,  KC_LCTL, MO(_SYM),OSM_SFT, KC_ENT,          KC_BSPC, KC_SPC,  MO(_NAV),KC_ESC,  KC_MUTE
-//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|---ENT--|--------|--------|--------|--------|--------|--------|
+//  |--------|--------|--------|--------|--------|--------|--------|--------|       |--------|--------|--------|--------|--------|--------|--------|--------|
     ),
 // Commented keys are combos
 
@@ -149,26 +149,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 enum combos { 
     Q_W_TAB,
-    J_K_ENT,
+    J_SPC_ENT,
     P_BSPC_DEL,
+    J_K_BSPC,
+    ENT_BSPC_DEL,
+
     CV_COMBO,
-    VB_COMBO
+    VB_COMBO,
+    NY_COMBO
 };
 
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM j_k_ent_combo[] = { KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM j_spc_ent_combo[] = { KC_J, KC_SPC, COMBO_END};
 const uint16_t PROGMEM p_bspc_del_combo[] = { KC_P, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM j_k_bspc_combo[] = { KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM ent_bspc_del_combo[] = { KC_ENT, KC_BSPC, COMBO_END};
+
 const uint16_t PROGMEM comment_combo[] = { KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM uncomment_combo[] = { KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM vsc_flip_combo[] = { KC_N, KC_Y, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     //basic combos
     [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
-    [J_K_ENT] = COMBO(j_k_ent_combo, KC_ENT),
+    [J_SPC_ENT] = COMBO(j_spc_ent_combo, KC_ENT),
     [P_BSPC_DEL] = COMBO(p_bspc_del_combo, KC_DEL),
+    [J_K_BSPC] = COMBO(j_k_bspc_combo, KC_BSPC),
+    [ENT_BSPC_DEL] = COMBO(ent_bspc_del_combo, KC_DEL),
     //action combos
     [CV_COMBO] = COMBO_ACTION(comment_combo),
-    [VB_COMBO] = COMBO_ACTION(uncomment_combo)
+    [VB_COMBO] = COMBO_ACTION(uncomment_combo),
+    [NY_COMBO] = COMBO_ACTION(vsc_flip_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -187,6 +198,15 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code(KC_K);
         tap_code(KC_U);
         unregister_code(KC_LCTL);
+        }
+        break;
+    case NY_COMBO:
+        if (pressed) {
+        register_code(KC_LALT);
+        register_code(KC_LSFT);
+        tap_code(KC_0);
+        unregister_code(KC_LALT);
+        unregister_code(KC_LSFT);
         }
         break;
   }
