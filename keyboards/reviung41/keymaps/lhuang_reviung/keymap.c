@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 enum combos { 
     Q_W_TAB,
-    J_H_ENT,
+    J_COMM_ENT,
     P_BSPC_DEL,
     J_K_BSPC,
     EXLM_AT_1,
@@ -126,7 +126,7 @@ enum combos {
 };
 
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM j_h_ent_combo[] = { KC_J, KC_H, COMBO_END};
+const uint16_t PROGMEM j_comm_ent_combo[] = { KC_J, KC_COMM, COMBO_END};
 const uint16_t PROGMEM p_bspc_del_combo[] = { KC_P, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM j_k_bspc_combo[] = { KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM exlm_at_1_combo[] = { KC_EXLM, KC_AT, COMBO_END};
@@ -145,7 +145,7 @@ const uint16_t PROGMEM vsc_flip_combo[] = { KC_N, KC_Y, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     //basic combos
     [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
-    [J_H_ENT] = COMBO(j_h_ent_combo, KC_ENT),
+    [J_COMM_ENT] = COMBO(j_comm_ent_combo, KC_ENT),
     [P_BSPC_DEL] = COMBO(p_bspc_del_combo, KC_DEL),
     [J_K_BSPC] = COMBO(j_k_bspc_combo, KC_BSPC),
     [EXLM_AT_1] = COMBO(exlm_at_1_combo, KC_1),

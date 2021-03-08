@@ -45,9 +45,9 @@ enum planck_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LAYER0] = LAYOUT_planck_grid(
     KC_LGUI,        KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSPACE,      
-    OSM(MOD_LSFT),  KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_H,           KC_J,           KC_K,           KC_L,           LT(5,KC_SCOLON),LSFT_T(KC_QUOTE),
+    MO(6),          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_H,           KC_J,           KC_K,           KC_L,           LT(5,KC_SCOLON),KC_QUOTE,       
     KC_LALT,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       MO(8),          
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LCTRL,       LOWER,          KC_SPACE,       KC_NO,          RAISE,          KC_ESCAPE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_LCTRL,       LOWER,          LSFT_T(KC_SPACE),KC_NO,          RAISE,          KC_ESCAPE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
 
   [_BASE] = LAYOUT_planck_grid(
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 enum combos { 
     Q_W_TAB,
-    J_SPC_ENT,
+    J_COMM_ENT,
     P_BSPC_DEL,
     J_K_BSPC,
     EXLM_AT_1,
@@ -127,7 +127,7 @@ enum combos {
 };
 
 const uint16_t PROGMEM q_w_tab_combo[] = { KC_Q, KC_W, COMBO_END};
-const uint16_t PROGMEM j_spc_ent_combo[] = { KC_J, KC_SPC, COMBO_END};
+const uint16_t PROGMEM j_comm_ent_combo[] = { KC_J, KC_COMM, COMBO_END};
 const uint16_t PROGMEM p_bspc_del_combo[] = { KC_P, KC_BSPC, COMBO_END};
 const uint16_t PROGMEM j_k_bspc_combo[] = { KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM exlm_at_1_combo[] = { KC_EXLM, KC_AT, COMBO_END};
@@ -146,7 +146,7 @@ const uint16_t PROGMEM vsc_flip_combo[] = { KC_N, KC_Y, COMBO_END};
 combo_t key_combos[COMBO_COUNT] = {
     //basic combos
     [Q_W_TAB] = COMBO(q_w_tab_combo, KC_TAB),
-    [J_SPC_ENT] = COMBO(j_spc_ent_combo, KC_ENT),
+    [J_COMM_ENT] = COMBO(j_comm_ent_combo, KC_ENT),
     [P_BSPC_DEL] = COMBO(p_bspc_del_combo, KC_DEL),
     [J_K_BSPC] = COMBO(j_k_bspc_combo, KC_BSPC),
     [EXLM_AT_1] = COMBO(exlm_at_1_combo, KC_1),
