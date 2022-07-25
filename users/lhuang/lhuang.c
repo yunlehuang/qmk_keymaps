@@ -130,7 +130,7 @@ enum combos {
 	ZV_COMBO,
 	NY_COMBO,
 	Q_C_COMBO,
-    SX_COMBO,
+    MAC_SCREENSHOT,
     COMBO_LENGTH
 };
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -176,7 +176,7 @@ const uint16_t PROGMEM comment_combo[] = { KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM uncomment_combo[] = { KC_Z, KC_V, COMBO_END};
 const uint16_t PROGMEM vsc_flip_combo[] = { KC_N, KC_Y, COMBO_END};
 const uint16_t PROGMEM copy_value_combo[] = { KC_Q, KC_C, COMBO_END};
-const uint16_t PROGMEM mac_screenshot_combo[] = { KC_S, KC_X, COMBO_END};
+const uint16_t PROGMEM mac_screenshot_combo[] = { KC_T, KC_B, COMBO_END};
 
 combo_t key_combos[] = {
 	//basic combos
@@ -212,7 +212,7 @@ combo_t key_combos[] = {
 	[ZV_COMBO] = COMBO_ACTION(uncomment_combo),
 	[NY_COMBO] = COMBO_ACTION(vsc_flip_combo),
 	[Q_C_COMBO] = COMBO_ACTION(copy_value_combo),
-    [SX_COMBO] = COMBO_ACTION(mac_screenshot_combo)
+    [MAC_SCREENSHOT] = COMBO_ACTION(mac_screenshot_combo)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -268,7 +268,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         tap_code(KC_ESC);
         }
         break;
-    case SX_COMBO: // On MacOS, this copies a screen clip to clipboard
+    case MAC_SCREENSHOT: // On MacOS, this copies a screen clip to clipboard
         if (pressed) {
         register_code(KC_LCTL);
         register_code(KC_LSFT);
