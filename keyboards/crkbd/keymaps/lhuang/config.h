@@ -37,7 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Mousekey options
 
-#define MK_COMBINED
+// mk_combined left commented until bug is fixed in QMK.
+// #define MK_COMBINED
 
 #define MOUSEKEY_DELAY              0
 #define MOUSEKEY_INTERVAL           5     // lower is faster
