@@ -112,10 +112,19 @@ enum combos {
 	X_C_DOWN,
 	C_V_RGHT,
 	S_D_UP,
-	LEFT_DOWN_BTN1,
-	DOWN_RGHT_BTN2,
-	DOWN_UP_BTN3,
-
+    
+	FUN1,
+	FUN2,
+	FUN3,
+	FUN4,
+	FUN5,
+	FUN6,
+	FUN7,
+	FUN8,
+	FUN9,
+	FUN10,
+	FUN11,
+	FUN12,
 
 	ZC_COMBO,
 	ZV_COMBO,
@@ -149,9 +158,19 @@ const uint16_t PROGMEM z_x_left[] = { KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM x_c_down[] = { KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM c_v_rght[] = { KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM s_d_up[] = { KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM left_down_btn1[] = { KC_LEFT, KC_DOWN, COMBO_END};
-const uint16_t PROGMEM down_rght_btn2[] = { KC_DOWN, KC_RGHT, COMBO_END};
-const uint16_t PROGMEM down_up_btn3[] = { KC_DOWN, KC_UP, COMBO_END};
+
+const uint16_t PROGMEM fun_1[] = { KC_Q, KC_A, COMBO_END};
+const uint16_t PROGMEM fun_2[] = { KC_W, KC_S, COMBO_END};
+const uint16_t PROGMEM fun_3[] = { KC_E, KC_D, COMBO_END};
+const uint16_t PROGMEM fun_4[] = { KC_R, KC_F, COMBO_END};
+const uint16_t PROGMEM fun_5[] = { KC_A, KC_Z, COMBO_END};
+const uint16_t PROGMEM fun_6[] = { KC_S, KC_X, COMBO_END};
+const uint16_t PROGMEM fun_7[] = { KC_D, KC_C, COMBO_END};
+const uint16_t PROGMEM fun_8[] = { KC_F, KC_V, COMBO_END};
+const uint16_t PROGMEM fun_9[] = { KC_Q, KC_Z, COMBO_END};
+const uint16_t PROGMEM fun_10[] = { KC_W, KC_X, COMBO_END};
+const uint16_t PROGMEM fun_11[] = { KC_E, KC_C, COMBO_END};
+const uint16_t PROGMEM fun_12[] = { KC_R, KC_V, COMBO_END};
 
 const uint16_t PROGMEM comment_combo[] = { KC_Z, KC_C, COMBO_END};
 const uint16_t PROGMEM uncomment_combo[] = { KC_Z, KC_V, COMBO_END};
@@ -173,9 +192,20 @@ combo_t key_combos[] = {
 	[X_C_DOWN] = COMBO(x_c_down, KC_DOWN),
 	[C_V_RGHT] = COMBO(c_v_rght, KC_RGHT),
 	[S_D_UP] = COMBO(s_d_up, KC_UP),
-	[LEFT_DOWN_BTN1] = COMBO(left_down_btn1, KC_BTN1),
-	[DOWN_RGHT_BTN2] = COMBO(down_rght_btn2, KC_BTN2),
-	[DOWN_UP_BTN3] = COMBO(down_up_btn3, KC_BTN3),
+
+    //function keys
+    [FUN1] = COMBO(fun_1, KC_F1),
+    [FUN2] = COMBO(fun_2, KC_F2),
+    [FUN3] = COMBO(fun_3, KC_F3),
+    [FUN4] = COMBO(fun_4, KC_F4),
+    [FUN5] = COMBO(fun_5, KC_F5),
+    [FUN6] = COMBO(fun_6, KC_F6),
+    [FUN7] = COMBO(fun_7, KC_F7),
+    [FUN8] = COMBO(fun_8, KC_F8),
+    [FUN9] = COMBO(fun_9, KC_F9),
+    [FUN10] = COMBO(fun_10, KC_F10),
+    [FUN11] = COMBO(fun_11, KC_F11),
+    [FUN12] = COMBO(fun_12, KC_F12),
 
 	//action combos
 	[ZC_COMBO] = COMBO_ACTION(comment_combo),
