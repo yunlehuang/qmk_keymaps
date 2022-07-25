@@ -4,24 +4,16 @@
 
 
 #define NUM_SCN LT(_NUM, KC_SCLN)
-#define OSM_SFT OSM(MOD_LSFT)
 #define CTR_LEF C(KC_LEFT)
 #define CTR_RIG C(KC_RGHT)
 #define PREV RCS(KC_TAB)
 #define NEXT C(KC_TAB)
-#define VSC_PRE LCTL(KC_PGUP) //previous tab in VS code
-#define VSC_NEX LCTL(KC_PGDN) //next tab in VS code
-#define ALT_NUM MO(_NUM2)
 #define SYMBOL MO(_SYM)
 #define NAVIGA MO(_NAV)
-#define SPC_MOU LT(_MOU, KC_SPC)
-#define SPC_NAV LT(_NAV, KC_SPC)
-#define SPC_SFT SFT_T(KC_SPC)
 #define MOUSE_ MO(_MOU)
-#define LFT_NUM MO(_NUM2)
-#define CLK_MOU LT(_MOU, KC_BTN1)
 #define ESC_MOU LT(_MOU, KC_ESC)
 #define MUS_STG MO(_MUS)
+#define ALT_NUM MO(_NUM2)
 
 
 
@@ -29,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_WIN] = LAYOUT(
     KC_LGUI,	KC_Q,	    KC_W,	    KC_E,	    KC_R,	    KC_T,               KC_Y,       KC_U,	    KC_I,	    KC_O,	    KC_P,	    KC_LEAD,
     KC_LALT,	KC_A,	    KC_S,	    KC_D,	    KC_F,	    KC_G,               KC_H,	    KC_J,	    KC_K,	    KC_L,	    NUM_SCN,	KC_QUOT,
-    KC_LCTL,	KC_Z,	    KC_X,	    KC_C,	    KC_V,	    KC_B,               KC_N,   	KC_M,	    KC_COMM,	KC_DOT,	    KC_SLSH,	MO(_MUS),
+    KC_LCTL,	KC_Z,	    KC_X,	    KC_C,	    KC_V,	    KC_B,               KC_N,   	KC_M,	    KC_COMM,	KC_DOT,	    KC_SLSH,	MUS_STG,
                                         ALT_NUM,	SYMBOL,	    KC_LSFT,            KC_SPC,	    NAVIGA, 	ESC_MOU
   ),
 
@@ -80,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_GAM] = LAYOUT(
      KC_2,	    KC_TAB, 	KC_Q,	    KC_W,   	KC_E,   	KC_R,               KC_Y,   	KC_U,   	KC_I,   	KC_O,	    KC_P,   	KC_ESC,
      KC_3,	    KC_LSFT,	KC_A,	    KC_S,   	KC_D,   	KC_F,               KC_H,   	KC_J,   	KC_K,   	KC_L,	    KC_SCLN,	_______,
-     KC_4,	    KC_LALT,	KC_Z,	    KC_X,   	KC_C,   	KC_V,               KC_N,   	KC_M,   	KC_COMM,	KC_DOT,	    KC_SLSH,	MO(_MUS),
+     KC_4,	    KC_LALT,	KC_Z,	    KC_X,   	KC_C,   	KC_V,               KC_N,   	KC_M,   	KC_COMM,	KC_DOT,	    KC_SLSH,	MUS_STG,
                                         KC_LCTL,	KC_SPC,	    KC_1,              	KC_SPC,	    KC_ESC,	    TO(_WIN)
   ),
 
@@ -94,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_JIG] = LAYOUT(
      KC_LGUI,	KC_Q,	    KC_W,	    KC_E,   	KC_R,   	KC_T,               KC_Y,   	KC_U,   	KC_I,   	KC_O,	    KC_P,   	KC_MS_U,
      XXXXXXX,	KC_A,	    KC_S,	    KC_D,   	KC_F,   	KC_G,               KC_H,   	KC_J,   	KC_K,   	KC_L,	    XXXXXXX,	KC_QUOT,
-     KC_LALT,	KC_Z,	    KC_X,	    KC_C,   	KC_V,   	KC_B,               KC_N,   	KC_M,   	KC_COMM,	KC_DOT,	    KC_SLSH,	MO(_MUS),
+     KC_LALT,	KC_Z,	    KC_X,	    KC_C,   	KC_V,   	KC_B,               KC_N,   	KC_M,   	KC_COMM,	KC_DOT,	    KC_SLSH,	MUS_STG,
                                         KC_LCTL,	XXXXXXX,	XXXXXXX,	        XXXXXXX,	XXXXXXX,	XXXXXXX
   ),
 

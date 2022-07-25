@@ -54,7 +54,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // combo settings
 
 #define COMBO_ALLOW_ACTION_KEYS
-#define COMBO_COUNT 20
 #define COMBO_TERM 45
 
 #define LEADER_TIMEOUT 300 
