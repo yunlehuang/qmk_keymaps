@@ -21,14 +21,14 @@
 
 #define MOUSEKEY_WHEEL_DELAY        0
 #define MOUSEKEY_WHEEL_INTERVAL     100   // lower is faster
-#define MOUSEKEY_WHEEL_MAX_SPEED    8   // not really sure what this does
-#define MOUSEKEY_WHEEL_TIME_TO_MAX  0     // zero means constant
+#define MOUSEKEY_WHEEL_MAX_SPEED    4   // not really sure what this does
+#define MOUSEKEY_WHEEL_TIME_TO_MAX  40     // zero means constant
 
 // combo settings
 
 #define COMBO_ALLOW_ACTION_KEYS
 #define COMBO_TERM 45
-#define COMBO_TERM_PER_COMBO
+
 
 // leader settings
 #define LEADER_TIMEOUT 350

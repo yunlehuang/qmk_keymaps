@@ -186,9 +186,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
-            tap_code(KC_VOLU);
+            tap_code(KC_DOWN);
         } else {
-            tap_code(KC_VOLD);
+            tap_code(KC_UP);
         }
     }
     return false;
