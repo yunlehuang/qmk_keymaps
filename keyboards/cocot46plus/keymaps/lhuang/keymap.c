@@ -1,24 +1,18 @@
+#include QMK_KEYBOARD_H
+#include <stdio.h>
+#include "quantum.h"
+
 // layer number enum
 enum layers {
     _WIN = 0,
     _MAC,
-    _TTS,
     _SYM,
     _NAV,
     _NUM,
-    _NUM2,
-    _GAM,
     _MOU,
     _JIG,
     _MUS
 };
-
-// variables for jiggler
-static uint32_t key_timer = 0;
-static bool key_trigger = false;
-
-// variables for keycodes
-static uint16_t base_layer_code = 0;
 
 // custom keycodes
 enum custom_keycodes {
@@ -29,6 +23,125 @@ enum custom_keycodes {
    LN_HOME,
    LN_END
 };
+
+// variables for jiggler
+static uint32_t key_timer = 0;
+static bool key_trigger = false;
+
+// key aliases
+#define NUM_SCN LT(_NUM, KC_SCLN)
+#define CTR_LEF C(KC_LEFT)
+#define CTR_RIG C(KC_RGHT)
+#define PREV RCS(KC_TAB)
+#define NEXT C(KC_TAB)
+#define SYMBOL MO(_SYM)
+#define NAVIGA MO(_NAV)
+#define MOUSE_ MO(_MOU)
+#define ESC_MOU LT(_MOU, KC_ESC)
+#define MUS_STG MO(_MUS)
+#define ALT_NUM MO(_NUM)
+
+
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  [_WIN] = LAYOUT(
+    KC_LGUI,	KC_Q,	    KC_W,	    KC_E,	    KC_R,	    KC_T,                               KC_Y,       KC_U,	    KC_I,	    KC_O,	    KC_P,	    KC_LEAD,
+    KC_LALT,	KC_A,	    KC_S,	    KC_D,	    KC_F,	    KC_G,                               KC_H,	    KC_J,	    KC_K,	    KC_L,	    NUM_SCN,	KC_QUOT,
+    KC_LCTL,	KC_Z,	    KC_X,	    KC_C,	    KC_V,	    KC_B,                               KC_N,   	KC_M,	    KC_COMM,	KC_DOT,	    KC_SLSH,	MUS_STG,
+                            XXXXXXX,    ALT_NUM,	SYMBOL,	    KC_LSFT,    KC_BTN1,    KC_BTN2,    KC_SPC,	    NAVIGA, 	ESC_MOU,    XXXXXXX,
+                                                                        KC_UP,    KC_BTN3,    KC_DOWN, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+  [_MAC] = LAYOUT(
+    KC_LCTL,	_______,	_______,	_______,	_______,	_______,                            _______,	_______,	_______,	_______,	_______,	_______,
+    _______,	_______,	_______,	_______,	_______,	_______,                            _______,	_______,	_______,	_______,	_______,	_______,
+    KC_LGUI,	_______,	_______,	_______,	_______,	_______,                            _______,	_______,	_______,	_______,	_______,	_______,
+                            _______,    _______,	_______,	_______,    _______,    _______,    _______,	_______,	_______,    XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+
+  [_SYM] = LAYOUT(
+     _______,	KC_EXLM,	KC_AT,  	KC_HASH,	KC_DLR, 	KC_PERC,                            KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_UNDS,	KC_EQL,		_______,
+     _______,	KC_GRV,	    KC_TILD,	KC_LPRN,	KC_RPRN,	KC_BSLS,                            KC_PIPE,	KC_LBRC,	KC_RBRC,	KC_MINS,	KC_PLUS,	_______,
+     _______,	KC_WH_D,	KC_WH_U,	KC_LABK,	KC_RABK,	XXXXXXX,                            XXXXXXX,	KC_LCBR,	KC_RCBR,	XXXXXXX,	XXXXXXX,	_______,
+                            _______,    CTR_LEF,	XXXXXXX,	CTR_RIG,    _______,    _______,    _______,	XXXXXXX,	_______,    XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+
+  [_NAV] = LAYOUT(
+     _______,	_______,	KC_BTN2,	KC_MS_U,	KC_BTN1,	KC_WH_U,                            KC_PGUP,	LN_HOME,	KC_UP,	    LN_END,	    KC_WH_U,	KC_HOME,
+     PREV,      NEXT,	    KC_MS_L,	KC_MS_D,	KC_MS_R,	KC_WH_D,                            KC_PGDN,	KC_LEFT,	KC_DOWN,	KC_RGHT,	KC_WH_D,	KC_END,
+     _______,	_______,	KC_WH_L,	KC_BTN3,	KC_WH_R,	_______,                            _______,	WRDPREV,	XXXXXXX,	WRDNEXT,	_______,	_______,
+                            _______,    KC_ACL0,	KC_ACL1,	KC_ACL2,    _______,    _______,    _______,	XXXXXXX,	_______,    XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+  [_NUM] = LAYOUT(
+     KC_ESC,	KC_1,	    KC_2,	    KC_3,	    _______,    _______,                            KC_PSLS,	KC_7,	    KC_8,	    KC_9,   	XXXXXXX,	_______,
+     _______,	KC_4,	    KC_5,	    KC_6,	    _______,	_______,                            KC_PAST,	KC_4,	    KC_5,	    KC_6,   	XXXXXXX,	_______,
+     _______,	KC_7,	    KC_8,	    KC_9,	    KC_0,       _______,                            KC_PMNS,	KC_1,	    KC_2,	    KC_3,   	XXXXXXX,	_______,
+                            _______,    _______,	_______,	_______,    _______,    _______,    KC_PPLS,	KC_0,	    KC_DOT,     XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+  [_MOU] = LAYOUT(
+     _______,	_______,	_______,	KC_MS_U,	_______,	_______,                            _______,	_______,	KC_WH_U,	_______,	_______,	_______,
+     _______,	_______,	KC_MS_L,	KC_MS_D,	KC_MS_R,	_______,                            _______,	KC_BTN1,	KC_WH_D,	KC_BTN2,	_______,	_______,
+     _______,	_______,	_______,	_______,	_______,	_______,                            _______,	KC_WH_L,	KC_BTN3,	KC_WH_R,	_______,	_______,
+                            _______,    KC_ACL0,	KC_ACL1,	KC_ACL2,    _______,    _______,    _______,	_______,	_______,    XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+  [_JIG] = LAYOUT(
+     XXXXXXX,	KC_Q,	    KC_W,	    KC_E,   	KC_R,   	KC_T,                               KC_Y,   	KC_U,   	KC_I,   	KC_O,	    KC_P,   	KC_MS_U,
+     XXXXXXX,	KC_A,	    KC_S,	    KC_D,   	KC_F,   	KC_G,                               KC_H,   	KC_J,   	KC_K,   	KC_L,	    XXXXXXX,	KC_QUOT,
+     XXXXXXX,	KC_Z,	    KC_X,	    KC_C,   	KC_V,   	KC_B,                               KC_N,   	KC_M,   	KC_COMM,	KC_DOT,	    KC_SLSH,	MUS_STG,
+                            _______,    XXXXXXX,	XXXXXXX,	XXXXXXX,    _______,    _______,    XXXXXXX,	XXXXXXX,	XXXXXXX,    XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+
+  [_MUS] = LAYOUT(
+     _______,	RGB_SPI,	RGB_SAI,	RGB_HUI,	RGB_VAI,	_______,                            _______,	_______,	_______,	_______,	SETWIN,	    SETMAC,
+     _______,	RGB_SPD,	RGB_SAD,	RGB_HUD,	RGB_VAD,	_______,                            _______,	KC_MPLY,	KC_MPRV,	KC_MNXT,	_______,	_______,
+     RESET,	    _______,	RGB_RMOD,   RGB_MOD,	RGB_TOG,	_______,                            TO(_JIG),   KC_MUTE,	KC_VOLD,	KC_VOLU,	_______,	_______,
+                            _______,    DEBUG,	    _______,	_______,    _______,    _______,    TO(_WIN),   XXXXXXX,    XXXXXXX,   XXXXXXX,
+                                                                        _______,  KC_BTN3,  _______, XXXXXXX, XXXXXXX, XXXXXXX
+  ),
+};
+
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        // Volume control
+        if (clockwise) {
+            tap_code(KC_DOWN);
+        } else {
+            tap_code(KC_UP);
+        }
+    }
+    return false;
+}
+
+
+// layer state transition functionality
+layer_state_t layer_state_set_user(layer_state_t state) {
+   switch (get_highest_layer(state)) {
+   case _JIG:
+      key_trigger = true;
+      break;
+   default:
+      combo_enable();
+      key_trigger = false;
+      break;
+   }
+   return state;
+};
+
+
+// variables for keycodes
+static uint16_t base_layer_code = 0;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
