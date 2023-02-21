@@ -27,7 +27,8 @@ enum custom_keycodes {
    WRDPREV,
    WRDNEXT,
    LN_HOME,
-   LN_END
+   LN_END,
+   RETRNAL
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -91,6 +92,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          register_code(KC_LGUI);
          tap_code(KC_RIGHT);
          unregister_code(KC_LGUI);
+      }
+      return false;
+      break;
+   case RETRNAL:
+      if (record->event.pressed) {
+         tap_code(KC_LSFT);
+         _delay_ms(50);
+         tap_code(KC_BTN3);
+         _delay_ms(50);
+         tap_code(KC_SPC);
       }
       return false;
       break;
