@@ -98,10 +98,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    case RETRNAL:
       if (record->event.pressed) {
          tap_code(KC_LSFT);
-         _delay_ms(50);
+         _delay_ms(18);
          tap_code(KC_BTN3);
+         _delay_ms(22);
+         //tap_code(KC_SPC);
+         register_code(KC_SPC);
          _delay_ms(50);
-         tap_code(KC_SPC);
+         unregister_code(KC_SPC);
       }
       return false;
       break;
