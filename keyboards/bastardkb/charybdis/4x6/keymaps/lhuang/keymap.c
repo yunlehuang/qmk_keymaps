@@ -3,24 +3,16 @@
 
 
 #define NUM_SCN LT(_NUM, KC_SCLN)
-#define OSM_SFT OSM(MOD_LSFT)
 #define CTR_LEF C(KC_LEFT)
 #define CTR_RIG C(KC_RGHT)
 #define PREV RCS(KC_TAB)
 #define NEXT C(KC_TAB)
-#define VSC_PRE LCTL(KC_PGUP) //previous tab in VS code
-#define VSC_NEX LCTL(KC_PGDN) //next tab in VS code
-#define ALT_NUM MO(_NUM2)
 #define SYMBOL MO(_SYM)
 #define NAVIGA MO(_NAV)
-#define SPC_MOU LT(_MOU, KC_SPC)
-#define SPC_NAV LT(_NAV, KC_SPC)
-#define SPC_SFT SFT_T(KC_SPC)
 #define MOUSE_ MO(_MOU)
-#define LFT_NUM MO(_NUM2)
-#define CLK_MOU LT(_MOU, KC_BTN1)
 #define ESC_MOU LT(_MOU, KC_ESC)
 #define MUS_STG MO(_MUS)
+#define ALT_NUM MO(_NUM2)
 
 
 
@@ -34,10 +26,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
      KC_LALT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    NUM_SCN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
+     KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MOUSE_,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
                                          SYMBOL,  KC_LSFT, ALT_NUM, NAVIGA,  KC_SPC,
-                                                  XXXXXXX, XXXXXXX, KC_BTN1
+                                                  XXXXXXX, XXXXXXX, MUS_STG
           //`------------------------------------------------------------------------------------------------------------'
   ),
 
@@ -141,10 +133,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
      KC_3,    KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, _______,
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-     KC_4,    KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
+     KC_4,    KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
                                          KC_LCTL, KC_SPC,  RETRNAL, KC_SPC,  KC_ESC,  
-                                                  _______, _______, _______
+                                                  _______, _______, NAVIGA
           //`------------------------------------------------------------------------------------------------------------'
   ),
 
@@ -171,26 +163,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
      XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    XXXXXXX, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-     KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_MUS),
+     KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
                                          KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                                  _______, _______, _______
+                                                  _______, _______, NAVIGA
           //`------------------------------------------------------------------------------------------------------------'
   ),
 
   [_MUS] = LAYOUT_charybdis_4x6(
   //|--------|--------|--------|--------|--------|--------|                 |--------|--------|--------|--------|--------|--------|
-     _______, _______, _______, _______, _______, _______,                   TO(_WIN),TO(_TTS),TO(_GAM),_______, _______, _______,
+     _______, _______, _______, _______, _______, _______,                   _______, _______, _______ ,_______, _______, _______,
   //|--------|--------|--------|--------|--------|--------|                 |--------|--------|--------|--------|--------|--------|
-     _______, RGB_SPI, RGB_SAI, RGB_HUI, RGB_VAI, _______,                   _______, _______, _______, _______, SETWIN,  SETMAC,
+     _______, RGB_SPI, RGB_SAI, RGB_HUI, RGB_VAI, _______,                   TO(_WIN),TO(_TTS),TO(_GAM),_______, SETWIN,  SETMAC,
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
      _______, RGB_SPD, RGB_SAD, RGB_HUD, RGB_VAD, _______,                   _______, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-     _______, _______, RGB_RMOD,RGB_MOD, RGB_TOG, _______,                   TO(_JIG),KC_MUTE, KC_VOLD, KC_VOLU, _______, XXXXXXX,
+     _______, _______, RGB_RMOD,RGB_MOD, RGB_TOG, _______,                   TO(_JIG),KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-                                         _______, _______, _______, KC_BTN3 ,XXXXXXX,
-                                                  _______, _______, KC_BTN2
+                                         _______, _______, _______, _______ ,XXXXXXX,
+                                                  _______, _______, _______
           //`------------------------------------------------------------------------------------------------------------'
   )
 };
 
+// layer state transition functionality
+layer_state_t layer_state_set_user(layer_state_t state) {
+   switch (get_highest_layer(state)) {
+   case _TTS:
+      combo_disable();
+      key_trigger = false;
+      break;
+   case _GAM:
+      combo_disable();
+      key_trigger = false;
+      break;
+   case _JIG:
+      key_trigger = true;
+      break;
+   default:
+      combo_enable();
+      key_trigger = false;
+      break;
+   }
+   return state;
+};
