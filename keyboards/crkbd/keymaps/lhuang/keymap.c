@@ -93,8 +93,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_MUS] = LAYOUT(
      _______,	RGB_SPI,	RGB_SAI,	RGB_HUI,	RGB_VAI,	_______,            _______,	_______,	_______,	_______,	SETWIN,	    SETMAC,
      _______,	RGB_SPD,	RGB_SAD,	RGB_HUD,	RGB_VAD,	_______,            _______,	KC_MPLY,	KC_MPRV,	KC_MNXT,	_______,	_______,
-     RESET,	    _______,	RGB_RMOD,   RGB_MOD,	RGB_TOG,	_______,            TO(_JIG),   KC_MUTE,	KC_VOLD,	KC_VOLU,	_______,	XXXXXXX,
-                                        DEBUG,	    _______,	_______,	        TO(_WIN),   TO(_TTS),   TO(_GAM)
+     _______,   _______,	RGB_RMOD,   RGB_MOD,	RGB_TOG,	_______,            TO(_JIG),   KC_MUTE,	KC_VOLD,	KC_VOLU,	_______,	XXXXXXX,
+                                        _______,    _______,	_______,	        TO(_WIN),   TO(_TTS),   TO(_GAM)
   )
 };
 
