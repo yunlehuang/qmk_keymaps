@@ -28,7 +28,11 @@ enum custom_keycodes {
    WRDNEXT,
    LN_HOME,
    LN_END,
-   RETRNAL
+   RETRNAL,
+   T_LEFT,
+   T_RGHT,
+   T_UP,
+   T_DOWN,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -105,6 +109,38 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          register_code(KC_SPC);
          _delay_ms(75);
          unregister_code(KC_SPC);
+      }
+      return false;
+      break;
+   case T_LEFT:
+      if (record->event.pressed) {
+         tap_code(KC_LEFT);
+         tap_code(KC_LEFT);
+         tap_code(KC_LEFT);
+      }
+      return false;
+      break;
+   case T_RGHT:
+      if (record->event.pressed) {
+         tap_code(KC_RGHT);
+         tap_code(KC_RGHT);
+         tap_code(KC_RGHT);
+      }
+      return false;
+      break;
+   case T_UP:
+      if (record->event.pressed) {
+         tap_code(KC_UP);
+         tap_code(KC_UP);
+         tap_code(KC_UP);
+      }
+      return false;
+      break;
+   case T_DOWN:
+      if (record->event.pressed) {
+         tap_code(KC_DOWN);
+         tap_code(KC_DOWN);
+         tap_code(KC_DOWN);
       }
       return false;
       break;
