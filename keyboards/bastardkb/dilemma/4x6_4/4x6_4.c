@@ -48,10 +48,10 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
     }
     switch (index) {
         case 0: // Left-half encoder, mouse scroll.
-            tap_code(clockwise ? KC_MS_WH_DOWN : KC_MS_WH_UP);
+            tap_code(clockwise ? KC_DOWN : KC_UP);
             break;
         case 1: // Right-half encoder, volume control.
-            tap_code(clockwise ? KC_AUDIO_VOL_UP : KC_AUDIO_VOL_DOWN);
+            tap_code(clockwise ? KC_RIGHT : KC_LEFT);
             break;
     }
     return true;

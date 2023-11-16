@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,	KC_EXLM,	KC_AT,  	KC_HASH,	KC_DLR, 	KC_PERC,                            KC_CIRC,	KC_AMPR,	KC_ASTR,	KC_UNDS,	KC_EQL,		_______,
     _______,	KC_GRV,	    KC_TILD,	KC_LPRN,	KC_RPRN,	KC_BSLS,                            KC_PIPE,	KC_LBRC,	KC_RBRC,	KC_MINS,	KC_PLUS,	_______,
     _______,	KC_WH_D,	KC_WH_U,	KC_LABK,	KC_RABK,	XXXXXXX,                            XXXXXXX,	KC_LCBR,	KC_RCBR,	XXXXXXX,	XXXXXXX,	_______,
-                                        _______,	XXXXXXX,	CTR_RIG,    CTR_LEF,    _______,    _______,	XXXXXXX,	_______
+                                        _______,	XXXXXXX,	CTR_LEF,    CTR_RIG,    _______,    _______,	XXXXXXX,	_______
   ),
 
 
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NUM2] = LAYOUT(
     _______,	_______,	_______,	_______,	_______,	_______,                            _______,	_______,	_______,	_______,	_______,	_______,
     KC_ESC,	    KC_1,       KC_2,	    KC_3,   	_______,    _______,                            _______,	_______,	_______,	_______,	_______,	_______,
-    _______,	KC_4,       KC_5,	    KC_6,   	_______,   	_______,                            _______,	_______,	_______,	_______,	_______,	_______,
+    _______,	KC_4,       KC_5,	    KC_6,      SNIPING_MODE,_______,                            _______,	_______,	_______,	_______,	_______,	_______,
     _______,	KC_7,       KC_8,	    KC_9,   	KC_0,	    _______,                            _______,	_______,	_______,	_______,	_______,	_______,
                                         _______,    _______,	_______,    _______,    _______,    _______,	_______,	_______
   ),
@@ -150,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_MUS] = LAYOUT(
-    _______,	_______,	_______,	_______,	_______,	_______,                            _______,	_______,	_______,	_______,	_______,	_______,
+    _______,	_______,	_______,	_______,	_______,	_______,                            POINTER_SNIPING_DPI_REVERSE,	POINTER_SNIPING_DPI_FORWARD,	_______,	_______,	_______,	_______,
     _______,	RGB_SPI,	RGB_SAI,	RGB_HUI,	RGB_VAI,	_______,                            _______,	_______,	_______,	_______,	SETWIN,	    SETMAC,
     _______,	RGB_SPD,	RGB_SAD,	RGB_HUD,	RGB_VAD,	_______,                            _______,	KC_MPLY,	KC_MPRV,	KC_MNXT,	_______,	_______,
     _______,    _______,	RGB_RMOD,   RGB_MOD,	RGB_TOG,	_______,                            TO(_JIG),   KC_MUTE,	KC_VOLD,	KC_VOLU,	_______,	XXXXXXX,
